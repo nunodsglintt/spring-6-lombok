@@ -67,6 +67,6 @@ public class CustomerController {
     @GetMapping(CUSTOMER_ID_PATH)
     public Customer findCustomerById(@PathVariable("customerId") UUID id){
         log.debug("Get customer by Id entered Controller");
-        return this.customerService.findCustomerById(id);
+        return this.customerService.findCustomerById(id).orElseThrow(NotFoundException::new);
     }
 }

@@ -3,12 +3,13 @@ package guru.springframework.spring6restmvc.services;
 import guru.springframework.spring6restmvc.models.Customer;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface CustomerService {
     List<Customer> findCustomers();
 
-    Customer findCustomerById(UUID id);
+    Optional<Customer> findCustomerById(UUID id);
 
     Customer saveCustomer(Customer customer);
 

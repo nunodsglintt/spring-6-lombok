@@ -22,6 +22,8 @@ public class BeerController {
     public static final String BEER_PATH = "/api/v1/beer";
     public static final String BEER_ID_PATH = BEER_PATH + "/{beerId}";
 
+
+
     @PatchMapping(BEER_ID_PATH)
     public ResponseEntity patchBeerById(@PathVariable("beerId") UUID id, @RequestBody Beer beer){
 
@@ -66,6 +68,6 @@ public class BeerController {
     public Beer getBeerById(@PathVariable("beerId") UUID id){
         log.debug("Get Beer by ID in controller");
 
-        return beerService.getBeerById(id);
+        return beerService.getBeerById(id).orElseThrow(NotFoundException::new);
     }
 }
