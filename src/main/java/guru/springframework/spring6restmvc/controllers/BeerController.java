@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import guru.springframework.spring6restmvc.services.BeerService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class BeerController {
     }
 
     @PutMapping(BEER_ID_PATH)
-    public ResponseEntity updateBeer(@PathVariable("beerId") UUID id, @RequestBody BeerDTO beer){
+    public ResponseEntity updateBeer(@PathVariable("beerId") UUID id,@Validated @RequestBody BeerDTO beer){
         if(beerService.updateBeerById(id, beer).isEmpty()){
             throw new NotFoundException();
         }
@@ -54,7 +55,7 @@ public class BeerController {
     }
 
     @PostMapping(BEER_PATH)
-    public ResponseEntity handlePost(@RequestBody BeerDTO beer){
+    public ResponseEntity handlePost(@Validated  @RequestBody BeerDTO beer){
 
         BeerDTO savedBeer = beerService.saveNewBeer(beer);
 
